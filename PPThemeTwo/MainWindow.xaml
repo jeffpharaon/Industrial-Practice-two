@@ -1,0 +1,124 @@
+﻿<Window x:Class="PPThemeTwo.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PPThemeTwo"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Label Content="Username" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="151,145,0,0"/>
+        <TextBox Name="UsernameTextBox" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,148,0,0" Width="360"/>
+        <Label Content="Password" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="155,176,0,0"/>
+        <PasswordBox Name="PasswordBox" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,180,0,0" Width="360"/>
+        <Button Content="Login" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,217,0,0" Width="360" Click="LoginButton_Click"/>
+        <Label Content="GYM" HorizontalAlignment="Center" Margin="0,65,0,0" VerticalAlignment="Top" FontSize="36"/>
+        <Label x:Name="SystemInfo" Content="НЕВЕРНЫЙ ЛОГИН ИЛИ ПАРОЛЬ" HorizontalAlignment="Center" Margin="0,255,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="Red"/>
+        <Grid x:Name="AdminGrid" Background="White" d:IsHidden="True">
+            <TabControl>
+                <TabItem Header="Клиенты">
+                    <StackPanel>
+                        <TextBox Name="ClientIdTextBox" Text="Client ID" Foreground="Gray" GotFocus="RemovePlaceholderText" LostFocus="AddPlaceholderText" Margin="5"/>
+                        <TextBox Name="FullNameTextBox" Text="Full Name" Foreground="Gray" GotFocus="RemovePlaceholderText" LostFocus="AddPlaceholderText" Margin="5"/>
+                        <TextBox Name="ContactInfoTextBox" Text="Contact Info" Foreground="Gray" GotFocus="RemovePlaceholderText" LostFocus="AddPlaceholderText" Margin="5"/>
+                        <TextBox Name="SubscriptionTextBox" Text="Subscription" Foreground="Gray" GotFocus="RemovePlaceholderText" LostFocus="AddPlaceholderText" Margin="5"/>
+                        <TextBox Name="TrainerIdTextBox" Text="Trainer ID" Foreground="Gray" GotFocus="RemovePlaceholderText" LostFocus="AddPlaceholderText" Margin="5"/>
+                        <Button Content="Добавить клиента" Click="AddClientButton_Click" Margin="5"/>
+                        <Button Content="Изменить инфо. клиента" Click="EditClientButton_Click" Margin="5"/>
+                        <Button Content="Удалить клиента" Click="DeleteClientButton_Click" Margin="5"/>
+                        <Button Content="Сгенирировать репорт" Click="GenerateClientReportButton_Click" Margin="5"/>
+                        <ListBox Name="ClientsListBox" Margin="5"/>
+                    </StackPanel>
+                </TabItem>
+                <TabItem Header="Тренеры">
+                    <StackPanel>
+                        <TextBox Name="TrainersIdTextBox" Text="Trainer ID" Foreground="Gray" GotFocus="RemovePlaceholderText" LostFocus="AddPlaceholderText" Margin="5"/>
+                        <TextBox Name="TrainerFullNameTextBox" Text="Full Name" Foreground="Gray" GotFocus="RemovePlaceholderText" LostFocus="AddPlaceholderText" Margin="5"/>
+                        <TextBox Name="SpecializationTextBox" Text="Specialization" Foreground="Gray" GotFocus="RemovePlaceholderText" LostFocus="AddPlaceholderText" Margin="5"/>
+                        <TextBox Name="ScheduleTextBox" Text="Schedule" Foreground="Gray" GotFocus="RemovePlaceholderText" LostFocus="AddPlaceholderText" Margin="5"/>
+                        <Button Content="Добавить тренера" Click="AddTrainerButton_Click" Margin="5"/>
+                        <Button Content="Изменить инфо. тренера" Click="EditTrainerButton_Click" Margin="5"/>
+                        <Button Content="Удалить тренера" Click="DeleteTrainerButton_Click" Margin="5"/>
+                        <Button Content="Сгенирировать репорт" Click="GenerateTrainerReportButton_Click" Margin="5"/>
+                        <ListBox Name="TrainersListBox" Margin="5"/>
+                    </StackPanel>
+                </TabItem>
+                <TabItem Header="Снаряжение">
+                    <StackPanel>
+                        <TextBox Name="EquipmentIdTextBox" Text="Equipment ID" Foreground="Gray" GotFocus="RemovePlaceholderText" LostFocus="AddPlaceholderText" Margin="5"/>
+                        <TextBox Name="EquipmentNameTextBox" Text="Name" Foreground="Gray" GotFocus="RemovePlaceholderText" LostFocus="AddPlaceholderText" Margin="5"/>
+                        <TextBox Name="DescriptionTextBox" Text="Description" Foreground="Gray" GotFocus="RemovePlaceholderText" LostFocus="AddPlaceholderText" Margin="5"/>
+                        <CheckBox Name="AvailabilityCheckBox" Content="Доступный" Margin="5"/>
+                        <Button Content="Добавить снаряжение" Click="AddEquipmentButton_Click" Margin="5"/>
+                        <Button Content="Изменить снаряжение" Click="EditEquipmentButton_Click" Margin="5"/>
+                        <Button Content="Удалить снаряжение" Click="DeleteEquipmentButton_Click" Margin="5"/>
+                        <Button Content="Сгенирировать репорт" Click="GenerateEquipmentReportButton_Click" Margin="5"/>
+                        <ListBox Name="EquipmentListBox" Margin="5"/>
+                    </StackPanel>
+                </TabItem>
+                <TabItem Header="Тренировки">
+                    <StackPanel>
+                        <TextBox Name="WorkoutIdTextBox" Text="Workout ID" Foreground="Gray" GotFocus="RemovePlaceholderText" LostFocus="AddPlaceholderText" Margin="5"/>
+                        <TextBox Name="ClientsIdTextBox" Text="Client ID" Foreground="Gray" GotFocus="RemovePlaceholderText" LostFocus="AddPlaceholderText" Margin="5"/>
+                        <TextBox Name="WorkoutTrainerIdTextBox" Text="Trainer ID" Foreground="Gray" GotFocus="RemovePlaceholderText" LostFocus="AddPlaceholderText" Margin="5"/>
+                        <DatePicker Name="WorkoutDatePicker" Margin="5"/>
+                        <TextBox Name="WorkoutTimeTextBox" Text="Time (HH:MM)" Foreground="Gray" GotFocus="RemovePlaceholderText" LostFocus="AddPlaceholderText" Margin="5"/>
+                        <Button Content="Добавить тренировку" Click="AddWorkoutButton_Click" Margin="5"/>
+                        <Button Content="Изменить тренировку" Click="EditWorkoutButton_Click" Margin="5"/>
+                        <Button Content="Удалить тренировку" Click="DeleteWorkoutButton_Click" Margin="5"/>
+                        <ListBox Name="WorkoutsListBox" Margin="5"/>
+                    </StackPanel>
+                </TabItem>
+            </TabControl>
+        </Grid>
+        <Grid x:Name="TrainerGrid" Background="White" d:IsHidden="True">
+            <TabControl>
+                <TabItem Header="Группы">
+                    <StackPanel>
+                        <Button Content="Показать" Click="ViewGroupsButton_Click" Margin="5"/>
+                        <ListBox Name="GroupsListBox" Margin="5"/>
+                    </StackPanel>
+                </TabItem>
+                <TabItem Header="Субъекты">
+                    <StackPanel>
+                        <TextBox Name="TrainerIdTxtBox" Text="Trainer ID" Foreground="Gray" GotFocus="RemovePlaceholder" LostFocus="AddPlaceholder" Margin="5"/>
+                        <Button Content="Показать" Click="ViewSubjectsButton_Click" Margin="5"/>
+                        <ListBox Name="SubjectsListBox" Margin="5"/>
+                    </StackPanel>
+                </TabItem>
+                <TabItem Header="Журнал">
+                    <StackPanel>
+                        <TextBox Name="WorkoutIdTxtBox" Text="Workout ID" Foreground="Gray" GotFocus="RemovePlaceholder" LostFocus="AddPlaceholder" Margin="5"/>
+                        <TextBox Name="NotesTextBox" Text="Notes" Foreground="Gray" GotFocus="RemovePlaceholder" LostFocus="AddPlaceholder" Margin="5"/>
+                        <Button Content="Изменить журнал" Click="EditJournalButton_Click" Margin="5"/>
+                    </StackPanel>
+                </TabItem>
+            </TabControl>
+        </Grid>
+        <Grid x:Name="ManagerGrid" Background="White">
+            <TabControl>
+                <TabItem Header="Клиенты">
+                    <StackPanel>
+                        <Button Content="Показать" Click="ViewClientsButton_Click" Margin="5"/>
+                        <Button Content="Сгенерировать репорт" Click="GenerateClientReportBtn_Click" Margin="5"/>
+                        <ListBox Name="ClientsList" Margin="5"/>
+                    </StackPanel>
+                </TabItem>
+                <TabItem Header="Тренеры">
+                    <StackPanel>
+                        <Button Content="Показать" Click="ViewTrainersButton_Click" Margin="5"/>
+                        <Button Content="Сгенерировать репорт" Click="GenerateTrainerReportBtn_Click" Margin="5"/>
+                        <ListBox Name="TrainersList" Margin="5"/>
+                    </StackPanel>
+                </TabItem>
+                <TabItem Header="Снаряжение">
+                    <StackPanel>
+                        <Button Content="Показать" Click="ViewEquipmentButton_Click" Margin="5"/>
+                        <Button Content="Сгенерировать репорт" Click="GenerateEquipmentReportBtn_Click" Margin="5"/>
+                        <ListBox Name="EquipmentList" Margin="5"/>
+                    </StackPanel>
+                </TabItem>
+            </TabControl>
+        </Grid>
+    </Grid>
+</Window>
